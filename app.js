@@ -47,7 +47,7 @@ app.post("/movies/", async (Request, Response) => {
   const { director_id, movie_name, lead_actor } = Request.body;
   const postmoivesquery = `
     INSERT INTO
-    cricket_team (director_id, movie_name, lead_actor)
+    movie (director_id, movie_name, lead_actor)
   VALUES
     ('${director_id}', ${movie_name}, '${lead_actor}');`;
   const postmoivesarray = await database.run(postmoivesquery);
@@ -69,8 +69,8 @@ app.get("/movies/:movieId/", async (Request, Response) => {
 });
 
 app.put("/movies/:movieId/", async (Request, Response) => {
-  const { movie_name, lead_actor } = Request.body;
-  const { director_id } = Request.params;
+  const { directorId, movieName, leadActor } = Request.body;
+  const { movieId } = Request.params;
   const updatePlayerQuery = `
   UPDATE
     movie
